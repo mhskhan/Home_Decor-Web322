@@ -223,9 +223,9 @@ app.use((req, res, next) => {
 });
 
 // Controllers
-const loadDataController = require("../controllers/loadDataController");
-const generalController = require("../controllers/generalController");
-const inventoryController = require("../controllers/inventoryController");
+const loadDataController = require("./controllers/loadDataController");
+const generalController = require("./controllers/generalController");
+const inventoryController = require("./controllers/inventoryController");
 
 app.use("/", generalController);
 app.use("/inventory", inventoryController);
