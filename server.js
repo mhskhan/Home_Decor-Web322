@@ -156,7 +156,6 @@
 * Student Email : mhskhan@myseneca.ca
 * Course/Section: WEB322
 **************************************************************************************/
-
 const path = require("path");
 const express = require("express");
 const app = express();
@@ -173,7 +172,7 @@ const cloudinary = require("cloudinary").v2;
 const MongoStore = require("connect-mongo");
 
 // Load environment variables
-dotenv.config({ path: "./.env" });
+dotenv.config();
 
 // Cloudinary Config
 cloudinary.config({
@@ -182,12 +181,17 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+// MongoDB Connect
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ Connected to MongoDB"))
+  .catch(err => console.error("❌ MongoDB connection error:", err));
+
 // Middleware Setup
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "/views"));
+app.set("views", path.join(__dirname, "../views"));
 app.use(expressLayouts);
 app.set("layout", "layouts/main");
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "../public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
@@ -204,7 +208,7 @@ app.use(session({
   cookie: { maxAge: 1000 * 60 * 60 } // 1 hour
 }));
 
-// Session data to EJS templates
+// Share user data to EJS templates
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
   next();
@@ -219,13 +223,16 @@ app.use((req, res, next) => {
 });
 
 // Controllers
-const loadDataController = require("./controllers/loadDataController");
-const generalController = require("./controllers/generalController");
-const inventoryController = require("./controllers/inventoryController");
+const loadDataController = require("../controllers/loadDataController");
+const generalController = require("../controllers/generalController");
+const inventoryController = require("../controllers/inventoryController");
 
 app.use("/", generalController);
 app.use("/inventory", inventoryController);
 app.use("/load-data", loadDataController);
+
+// Favicon
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 // Image upload route (Cloudinary)
 app.post("/upload-image", async (req, res) => {
@@ -261,9 +268,5 @@ app.use(function (err, req, res, next) {
   res.status(500).send("Something broke!");
 });
 
-// MongoDB Connect
-mongoose.connect(process.env.MONGO_URI).then(() => {
-  console.log("Connected to MongoDB");
-}).catch(err => {
-  console.log("Can't connect to the MongoDB:", err);
-});
+// ✅ Export the app for Vercel
+module.exports = app;
