@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: black;
+    background-color: whitesmoke;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Style the logo container */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* Style the logo image */
+.logo img {
+    height: 50px; 
+    margin-right: 10px; 
+}
+
+/* Style the text next to the logo */
+.logo-text {
+    font-size: 1.5rem; 
+    font-weight: bold;
+    color: whitesmoke; 
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.hero img {
+    width: 100%;
+    height: auto;
+    filter: brightness(0.7);
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px 5px black;
+}
+
+
+
+/* Container for all items */
+.content-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+    padding: 20px;
+    background-color:white; 
+}
+
+/* Individual content items */
+.content-item {
+    background-color: white; 
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+/* Fixed size for images */
+.content-item img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    margin-bottom: 10px;
+}
+
+/* Styling for the headings */
+.content-item h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: black; /* Black text */
+    margin: 0;
+}
+
+
+
+/* Container for all items */
+.content-section {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 20px; 
+    padding: 20px;
+    background-color: white; 
+}
+
+/* Individual content items */
+.content-item {
+    background-color: white; 
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;  
+    flex: 1 1 23%; 
+    max-width: 23%; 
+    box-sizing: border-box; 
+    
+}
+
+/* Fixed size for images */
+.content-item img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    margin-bottom: 10px;
+}
+
+/* Styling for the headings */
+.content-item h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color:black; 
+    margin: 0;
+}
+
+/* Featured Products */
+.featured {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Products container with flexbox */
+.products {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 20px; 
+    padding: 20px;
+}
+
+/* Individual product item */
+.product {
+    background-color: white; 
+    padding: 10px;
+    border-radius: 8px; 
+    flex: 1 1 23%;
+    max-width: 23%; 
+    box-sizing: border-box; 
+    
+}
+
+/* Fixed size for product images */
+.product img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    margin-bottom: 10px;
+}
+
+/* Styling for the product headings */
+.product h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: black; 
+    margin: 0;
+}
+
+
+/* Footer */
+footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.social-media {
+    margin: 10px 0;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+    .content-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .product {
+        flex: 1 1 48%;
+        max-width: 48%;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-section {
+        grid-template-columns: 1fr;
+    }
+    .product {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}

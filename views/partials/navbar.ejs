@@ -1,0 +1,31 @@
+<header class="navbar">
+    <a href="/" class="logo">
+        <img src="/images/HunterDecor.jpg" alt="HunterDecor Logo">
+        <span class="logo-text">HomeDecor</span>
+    </a>
+    <nav>
+        <!-- Personalized welcome and navigation -->
+        <% if (user) { %>
+            <span>Welcome, <%= user.firstName %></span>
+
+            <!-- Navigation buttons based on user role -->
+            <% if (user.role === 'customer') { %>
+                <a href="/cart" class="button">🛒 Cart</a>
+            <% } else { %>
+                <!-- ======== ASSIGNMENT 5 ADDITIONS ======== -->
+                <!-- Only show "Load Data" link for clerks (new requirement) -->
+                <a href="/load-data/products" class="button">Load Data</a>
+                <!-- "Add Product" button links to new route -->
+                <a href="/inventory/add" class="button">Add Product</a>
+                <!-- ======================================== -->
+                <a href="/inventory/list" class="button">Inventory List</a>
+            <% } %>
+
+            <a href="/logout">Logout</a>
+        <% } else { %>
+            <!-- Sign Up and Log In links for anonymous users -->
+            <a href="/sign-up">Sign Up</a>
+            <a href="/log-in">Log In</a>
+        <% } %>
+    </nav>
+</header>

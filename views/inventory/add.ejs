@@ -1,0 +1,68 @@
+
+<section class="container mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-6">Add Product</h1>
+    
+    <% if (typeof error !== 'undefined' && error) { %>
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <%= error %>
+        </div>
+    <% } %>
+
+    <form action="/inventory/add" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <div>
+            <label class="block">Title:</label>
+            <input type="text" name="title" required class="w-full p-2 border rounded">
+        </div>
+        
+        <div>
+            <label class="block">Description:</label>
+            <input type="text" name="description" required class="w-full p-2 border rounded">
+        </div>
+        
+        <div>
+            <label class="block">Category:</label>
+            <input type="text" name="category" required class="w-full p-2 border rounded">
+        </div>
+        
+        <div>
+            <label class="block">Price:</label>
+            <input type="number" name="price" step="0.01" min="0.01" required class="w-full p-2 border rounded">
+        </div>
+        
+        <div>
+            <label class="block">Sale Price (optional):</label>
+            <input type="number" name="salePrice" step="0.01" min="0.01" class="w-full p-2 border rounded">
+        </div>
+        
+        <div>
+            <label class="block">Shipping Weight (kg):</label>
+            <input type="number" name="shippingWeight" min="1" required class="w-full p-2 border rounded">
+        </div>
+        
+        <div>
+            <label class="block">Shipping Dimensions (cm):</label>
+            <div class="grid grid-cols-3 gap-4">
+                <input type="number" name="shippingWidth" min="1" placeholder="Width" required class="p-2 border rounded">
+                <input type="number" name="shippingLength" min="1" placeholder="Length" required class="p-2 border rounded">
+                <input type="number" name="shippingHeight" min="1" placeholder="Height" required class="p-2 border rounded">
+            </div>
+        </div>
+        
+        <div>
+            <label class="block">Product Image:</label>
+            <input type="file" name="productImage" accept="image/jpeg,image/png,image/gif" required class="w-full p-2 border rounded">
+        </div>
+        
+        <div>
+            <label class="flex items-center">
+                <input type="checkbox" name="featured" value="true" class="mr-2">
+                <span>Featured Product</span>
+            </label>
+        </div>
+        
+        <div class="flex space-x-4">
+            <button type="submit" class="btn bg-green-500 text-white">Add Product</button>
+            <a href="/inventory/list" class="btn bg-gray-500 text-white">Cancel</a>
+        </div>
+    </form>
+</section>
