@@ -1,0 +1,45 @@
+{
+  "name": "myfirstsite",
+  "version": "1.0.0",
+  "description": "This is my first website named HuntingDecor where you can find all home furnitures to decorate your living home.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tw:build": "tailwindcss -i ./public/css/home.css -o ./public/css/main.css --watch"
+    
+  },
+  "keywords": [
+    "website",
+    "html",
+    "css",
+    "javascript",
+    "express",
+    "nodejs",
+    "decoration"
+  ],
+  "author": "Devendra Kumar Gupta",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "cloudinary": "^2.6.1",
+    "connect-mongo": "^5.1.0",
+    "daisyui": "^4.12.23",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-fileupload": "^1.5.1",
+    "express-session": "^1.18.1",
+    "form-data": "^4.0.2",
+    "init": "^0.1.2",
+    "install": "^0.13.0",
+    "mailgun.js": "^12.0.1",
+    "mongoose": "^8.13.0",
+    "multer": "^1.4.5-lts.2"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

@@ -1,0 +1,33 @@
+<section class="container mx-auto p-8">
+    <h1 class="text-2xl font-bold mb-6">Product List</h1>
+    
+    <div class="mb-4">
+        <a href="/inventory/add" class="btn bg-green-500 text-white">Add Product</a>
+    </div>
+
+    <table class="w-full border-collapse">
+        <thead>
+            <tr class="bg-gray-200">
+                <th class="p-2 border">Title</th>
+                <th class="p-2 border">Category</th>
+                <th class="p-2 border">Price</th>
+                <th class="p-2 border">Featured</th>
+                <th class="p-2 border">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% products.forEach(product => { %>
+                <tr class="border">
+                    <td class="p-2 border"><%= product.title %></td>
+                    <td class="p-2 border"><%= product.category %></td>
+                    <td class="p-2 border">$<%= product.price.toFixed(2) %></td>
+                    <td class="p-2 border"><%= product.featured ? 'Yes' : 'No' %></td>
+                    <td class="p-2 border">
+                        <a href="/inventory/edit/<%= product._id %>" class="btn bg-blue-500 text-white">Edit</a>
+                        <a href="/inventory/remove/<%= product._id %>" class="btn bg-red-500 text-white">Delete</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</section>

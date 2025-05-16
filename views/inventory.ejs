@@ -1,0 +1,29 @@
+<section class="inventory">
+    <!-- Featured Products Section -->
+    <% if (featuredProducts && featuredProducts.length > 0) { %>
+        <div class="mb-16 max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-9 text-gray-800 text-center">Featured Product</h2>
+            <div class="flex flex-wrap justify-center gap-8">
+                <% featuredProducts.forEach(product => { %>
+                    <div class="flex justify-center">
+                        <%- include('partials/product', { product: product }) %>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    <% } %>
+
+    <!-- Category Listings -->
+    <% productsByCategory.forEach(category => { %>
+        <div class="mb-16 max-w-7xl mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center"><%= category.category %></h2>
+            <div class="flex flex-wrap justify-center gap-8">
+                <% category.products.forEach(product => { %>
+                    <div class="flex justify-center">
+                        <%- include('partials/product', { product: product }) %>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    <% }) %>
+</section>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shopping Cart - HomeDecor</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body class="bg-gradient-to-b from-gray-100 to-gray-200 min-h-screen font-sans flex flex-col">
+
+  <!-- Main Container -->
+  <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-5xl">
+    <h1 class="text-4xl font-extrabold text-gray-800 mb-10 text-center drop-shadow-sm">🛒 Your Shopping Cart</h1>
+
+    <% if (cartItems && cartItems.length > 0) { %>
+      <div class="bg-white rounded-xl shadow-lg p-6 space-y-6">
+        <% cartItems.forEach(item => { %>
+          <div class="flex flex-col sm:flex-row border-b border-gray-200 pb-6 mb-4">
+            <img src="<%= item.product.imageUrl %>" alt="<%= item.product.title %>" 
+                 class="w-full sm:w-40 h-40 object-cover rounded-lg shadow-sm mb-4 sm:mb-0 sm:mr-6 transition-transform transform hover:scale-105">
+            
+            <div class="flex-1">
+              <h3 class="text-2xl font-semibold text-gray-800"><%= item.product.title %></h3>
+              <p class="text-gray-600 mt-1 text-lg">
+                <% if (item.product.salePrice) { %>
+                  <span class="font-bold text-red-500">$<%= item.product.salePrice.toFixed(2) %></span>
+                  <span class="line-through text-sm ml-2 text-gray-400">$<%= item.product.price.toFixed(2) %></span>
+                <% } else { %>
+                  <span>$<%= item.product.price.toFixed(2) %></span>
+                <% } %>
+              </p>
+
+              <div class="flex items-center mt-4 space-x-4">
+                <form action="/cart/update" method="POST" class="flex items-center border border-gray-300 rounded overflow-hidden">
+                  <input type="hidden" name="productId" value="<%= item.product._id %>">
+                  <button type="submit" name="action" value="decrease" class="bg-gray-200 hover:bg-gray-300 px-3 py-1">−</button>
+                  <span class="px-4 py-1 bg-gray-100 text-gray-800 font-medium"><%= item.quantity %></span>
+                  <button type="submit" name="action" value="increase" class="bg-gray-200 hover:bg-gray-300 px-3 py-1">+</button>
+                </form>
+
+                <span class="text-lg font-semibold text-green-600">
+                  $<% const price = item.product.salePrice || item.product.price; const total = price * item.quantity; %><%= total.toFixed(2) %>
+                </span>
+              </div>
+
+              <form action="/cart/remove" method="POST" class="mt-4">
+                <input type="hidden" name="productId" value="<%= item.product._id %>">
+                <button type="submit" class="text-sm text-red-500 hover:text-red-700 underline font-medium">
+                  Remove
+                </button>
+              </form>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+
+      <!-- Summary Box -->
+      <div class="bg-white rounded-xl shadow-lg p-6 mt-10">
+        <div class="space-y-2">
+          <div class="flex justify-between text-gray-700">
+            <span class="font-medium">Subtotal:</span>
+            <span>$<%= subtotal.toFixed(2) %></span>
+          </div>
+          <div class="flex justify-between text-gray-700">
+            <span class="font-medium">Tax (10%):</span>
+            <span>$<%= tax.toFixed(2) %></span>
+          </div>
+          <div class="flex justify-between text-gray-900 font-bold text-xl border-t border-gray-200 mt-4 pt-4">
+            <span>Grand Total:</span>
+            <span>$<%= grandTotal.toFixed(2) %></span>
+          </div>
+        </div>
+
+        <form action="/cart/checkout" method="POST" class="mt-6">
+          <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md transition duration-200">
+            ✅ Place Order
+          </button>
+        </form>
+      </div>
+
+    <% } else { %>
+      <!-- Empty Cart -->
+      <div class="bg-white rounded-xl shadow-md p-12 text-center max-w-xl mx-auto">
+        <p class="text-gray-600 text-lg mb-6">🛒 Your cart is currently empty.</p>
+        <a href="/inventory" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded shadow-md transition duration-200">
+          Continue Shopping
+        </a>
+      </div>
+    <% } %>
+  </main>
+
+</body>
+</html>

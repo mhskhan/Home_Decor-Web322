@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List - HomeDecor</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    
+    <div class="welcome-message flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600 text-white text-center p-8">
+        <h1 class="text-5xl font-bold mb-4">Product List</h1>
+        
+        <% if (user) { %>
+            <p class="text-xl mb-8">Welcome, <%= user.firstName %>!</p>
+        <% } %>
+        
+        <p class="text-xl mb-8">This is where you can view what to hunt for your beautiful world. This will be available soon...</p>
+    </div>
+    
+</body>
+</html>
